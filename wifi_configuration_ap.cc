@@ -176,7 +176,7 @@ void WifiConfigurationAp::StartAccessPoint()
     nvs_handle_t nvs;
     esp_err_t err = nvs_open("wifi", NVS_READONLY, &nvs);
     if (err == ESP_OK) {
-        // 读取MUSIC URL them dia chi music
+        // MUSIC URL them dia chi music
         char music_url[128] = {0};
         size_t music_url_size = sizeof(music_url);
         err = nvs_get_str(nvs, "music_url", music_url, &music_url_size);
