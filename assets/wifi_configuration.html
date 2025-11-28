@@ -270,7 +270,7 @@
                 <h3 data-lang="advanced_tab">Advanced</h3>
                 <p class="error" style="color: red; text-align: center;" id="advanced_error"></p>
 
-                <!-- MUSIC URL -->
+                <!-- MUSIC URL cho nhap dia chi nhac-->
                 <p>
                     <label for="music_url" data-lang="music_url">Custom MUSIC URL:</label>
                     <div style="display: flex; align-items: center; gap: 10px;">
@@ -1417,7 +1417,7 @@
                 const response = await fetch('/advanced/config');
                 const data = await response.json();
                 
-                if (data.music_url) {
+                if (data.music_url) {//dia chi nhac
                     document.getElementById('music_url').value = data.music_url;
                 }
                 if (data.ota_url) {
@@ -1438,7 +1438,7 @@
         }
 
         /**
-         * Clear MUSIC URL input field
+         * Xoa dia chi MUSIC URL nhap vao
          */
         function clearMusicUrl() {
             document.getElementById('music_url').value = '';

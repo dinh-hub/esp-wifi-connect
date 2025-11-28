@@ -177,7 +177,7 @@ void WifiConfigurationAp::StartAccessPoint()
     esp_err_t err = nvs_open("wifi", NVS_READONLY, &nvs);
     if (err == ESP_OK) {
         // MUSIC URL them dia chi music
-        char music_url[128] = {0};
+        char music_url[128] = {0};//dia chi nhac thuong ngan nen chi can 128 la du.
         size_t music_url_size = sizeof(music_url);
         err = nvs_get_str(nvs, "music_url", music_url, &music_url_size);
         if (err == ESP_OK) {
@@ -606,13 +606,13 @@ void WifiConfigurationAp::StartWebServer()
                 return ESP_FAIL;
             }
 
-            // 保存MUSIC URL them dia chi music
+            //MUSIC URL them dia chi music
             cJSON *music_url = cJSON_GetObjectItem(json, "music_url");
             if (cJSON_IsString(music_url) && music_url->valuestring) {
                 this_->music_url_ = music_url->valuestring;
                 err = nvs_set_str(nvs, "music_url", this_->music_url_.c_str());
                 if (err != ESP_OK) {
-                    ESP_LOGE(TAG, "Failed to save MUSIC URL: %d", err);
+                    ESP_LOGE(TAG, "Không lưu được địa chỉ MUSIC URL: %d", err);
                 }
             }
             // 保存OTA URL
@@ -676,7 +676,7 @@ void WifiConfigurationAp::StartWebServer()
             httpd_resp_set_hdr(req, "Connection", "close");
             httpd_resp_send(req, "{\"success\":true}", HTTPD_RESP_USE_STRLEN);
 
-           ESP_LOGI(TAG, "Save music_url=%s", this_->music_url_.c_str());
+			ESP_LOGI(TAG, "Save music_url=%s", this_->music_url_.c_str());//music
             ESP_LOGI(TAG, "Save ota_url=%s", this_->ota_url_.c_str());																		  
             ESP_LOGI(TAG, "Saved settings: ota_url=%s, max_tx_power=%d, remember_bssid=%d, sleep_mode=%d",
                 this_->ota_url_.c_str(), this_->max_tx_power_, this_->remember_bssid_, this_->sleep_mode_);
